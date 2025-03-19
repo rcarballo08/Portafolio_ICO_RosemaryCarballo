@@ -19,10 +19,9 @@ public class Categoria implements Serializable {
     private String descripcion;
     private String rutaImagen;
     private boolean activo;
-    
-    @OneToMany
-    @JoinColumn(name = "id_categoria", updatable = false)
-    List<Producto> productos;
+
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Producto> productos;
 
     public Categoria() {
     }
@@ -31,5 +30,22 @@ public class Categoria implements Serializable {
         this.descripcion = descripcion;
         this.activo = activo;
     }
-    
+
+    // Métodos faltantes:
+
+    public Long getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
 }
